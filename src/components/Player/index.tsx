@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useAudio } from "react-use";
 
@@ -8,6 +8,8 @@ import {
 	StopIcon,
 	BackwardIcon,
 	ForwardIcon,
+	SpeakerWaveIcon,
+	SpeakerXMarkIcon,
 } from "@heroicons/react/24/solid";
 
 type PlayerPropTypes = {};
@@ -63,14 +65,44 @@ const Player: React.FC<PlayerPropTypes> = () => {
 		updateCurrentSong(newSong.name, newSong.url);
 	};
 
+	const [musicController, setMusıcController] = useState(true);
+
+	const onClickMusıcController = () => {
+		setMusıcController(!musicController);
+	};
+
+	const [voiceIsActive, setVoiceIsActive] = useState(false);
+
+	const onClickVoice = () => {
+		setVoiceIsActive(!voiceIsActive);
+	};
+
 	return (
 		<div className='flex flex-row gap-2'>
 			{/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
 			{audio}
 			<BackwardIcon onClick={onClickBackward} className='w-7 h-7' />
-			<PlayIcon onClick={controls.play} className='w-7 h-7' />
-			<StopIcon onClick={controls.pause} className='w-7 h-7' />
+			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+			<button
+				onClick={onClickMusıcController}
+				className='flex flex-row relative'
+			>
+				{musicController ? (
+					<PlayIcon onClick={controls.play} className='w-7 h-7' />
+				) : (
+					<StopIcon onClick={controls.pause} className='w-7 h-7' />
+				)}
+			</button>
 			<ForwardIcon onClick={onClickForward} className='w-7 h-7' />
+			{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+			<button onClick={onClickVoice} className='flex flex-row relative'>
+				{voiceIsActive ? (
+					<SpeakerXMarkIcon onClick={controls.unmute} className='w-7 h-7' />
+				) : (
+					<SpeakerWaveIcon onClick={controls.mute} className='w-7 h-7' />
+				)}
+			</button>
+
 			{currentSong.name}
 		</div>
 	);

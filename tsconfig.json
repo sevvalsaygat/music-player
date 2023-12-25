@@ -21,7 +21,8 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@app/components": ["./src/components"],
-      "@app/data/*": ["./src/data/*"]
+      "@app/data/*": ["./src/data/*"],
+      "@app/hooks": ["./src/hooks"],
     }
   },
   "include": ["src"],

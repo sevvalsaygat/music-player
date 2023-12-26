@@ -13,6 +13,8 @@ type UsePlayerStateType = {
 		name: string;
 	};
 	updateCurrentSong: (name: string, url: string) => void;
+	isPaused: boolean;
+	setIsPaused: (value: boolean) => void;
 };
 
 const usePlayerStore = create<UsePlayerStateType>()(
@@ -20,6 +22,7 @@ const usePlayerStore = create<UsePlayerStateType>()(
 		persist(
 			(set) => ({
 				songs: songData,
+				isPaused: false,
 				currentSong: songData[0],
 				updateCurrentSong: (name: string, url: string) => {
 					set({
@@ -27,6 +30,11 @@ const usePlayerStore = create<UsePlayerStateType>()(
 							name,
 							url,
 						},
+					});
+				},
+				setIsPaused: (value: boolean) => {
+					set({
+						isPaused: value,
 					});
 				},
 			}),

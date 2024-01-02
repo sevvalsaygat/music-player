@@ -3,6 +3,25 @@
 @tailwind utilities;
 
 
-.music-player-bg {
+.idle-bg {
   background-image: url("/music-player-bg.avif");
+  background-size: 180% 180%;
+}
+
+.animated-bg {
+  background-image: url("/music-player-bg.avif");
+  animation: pulse 2s infinite;
+  background-size: 180% 180%;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

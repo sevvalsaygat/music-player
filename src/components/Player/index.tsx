@@ -83,8 +83,6 @@ const Player: React.FC<PlayerPropTypes> = () => {
 
 	const playerDurationValue = (state.time / state.duration) * 100;
 
-	const [volume, setVolume] = useState(1);
-
 	return (
 		<div className='flex flex-col'>
 			<div className='flex justify-center m-10 text-lg font-light text-neutral-100'>
